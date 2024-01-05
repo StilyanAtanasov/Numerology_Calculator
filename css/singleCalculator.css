@@ -21,9 +21,9 @@ html {
   right: 0;
   bottom: 0;
   top: 100px;
-  min-width: 10%;
-  min-height: 10%;
   z-index: -1;
+  width: 100%;
+  height: auto;
 }
 
 .body1 {
@@ -68,30 +68,6 @@ html {
   );
   -webkit-animation: AnimateBG 20s ease infinite;
   animation: AnimateBG 20s ease infinite;
-}
-
-@-webkit-keyframes AnimateBG {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-@keyframes AnimateBG {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
 }
 
 main {
@@ -237,6 +213,20 @@ header span {
   border: 5px solid yellow;
 }
 
+/* Animations */
+@keyframes AnimateBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Media */
 @media (max-width: 1054px) {
   .resultImage {
     scale: 0.7;

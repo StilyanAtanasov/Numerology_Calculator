@@ -59,7 +59,72 @@ function clearImgsSpecs(
   });
 }
 
+function clearSectionData() {
+  document.getElementById(`Number1`).innerHTML = `No data`;
+  document.getElementById(`Number2`).innerHTML = `No data`;
+  document.getElementById(`Number3`).innerHTML = `No data`;
+  document.getElementById(`Number4`).innerHTML = `No data`;
+  document.getElementById(`Number5`).innerHTML = `No data`;
+  document.getElementById(`Number6`).innerHTML = `No data`;
+  document.getElementById(`Number7`).innerHTML = `No data`;
+  document.getElementById(`Number8`).innerHTML = `No data`;
+  document.getElementById(`Number9`).innerHTML = `No data`;
+
+  line1.className = `matcher1`;
+  line2.className = `matcher1`;
+  line3.className = `matcher2`;
+  line4.className = `matcher3_left_top`;
+  line5.className = `matcher2`;
+  line6.className = `matcher3_right_top`;
+  line7.className = `matcher2`;
+  line8.className = `matcher1`;
+  line9.className = `matcher1`;
+  line10.className = `matcher2`;
+  line11.className = `matcher3_left_bottom`;
+  line12.className = `matcher2`;
+  line13.className = `matcher3_right_bottom`;
+  line14.className = `matcher2`;
+  line15.className = `matcher1`;
+  line16.className = `matcher1`;
+
+  clearImgsSpecs([
+    graphic1,
+    graphic2,
+    graphic3,
+    graphic4,
+    graphic5,
+    graphic6,
+    graphic7,
+    graphic8,
+    graphic9,
+  ]);
+
+  document.getElementById(`dataResultDate1`).innerHTML = `No data`;
+  document.getElementById(`dataResultMonth1`).innerHTML = `No data`;
+  document.getElementById(`dataResultYear1`).innerHTML = `No data`;
+  document.getElementById(`dataResultAll1`).innerHTML = `No data`;
+  document.getElementById(`dataResultDate1_Month1`).innerHTML = `No data`;
+  document.getElementById(`dataResultDate1_Year1`).innerHTML = `No data`;
+  document.getElementById(`dataResultMonth1_Year1`).innerHTML = `No data`;
+
+  document.getElementById(`Headnumber`).innerHTML = `No data`;
+
+  numberOf1s = 0;
+  numberOf2s = 0;
+  numberOf3s = 0;
+  numberOf4s = 0;
+  numberOf5s = 0;
+  numberOf6s = 0;
+  numberOf7s = 0;
+  numberOf8s = 0;
+  numberOf9s = 0;
+
+  loggedNumbers = [];
+}
+
 calculateBTN.onclick = function () {
+  clearSectionData();
+
   let dateString = prompt(`Insert date`);
   let monthString = prompt(`Insert month`);
   let yearString = prompt(`Insert year`);
@@ -68,30 +133,32 @@ calculateBTN.onclick = function () {
   let month = Number(monthString);
   let year = Number(yearString);
 
-  if (year < 0) year -= 2 * year;
+  if (year < 0)
+    alert(`Invalid input date [${dateString}/${monthString}/${yearString}]!
+  - The year must be greater or equal 0!`);
 
   // Validation
-  var ListofDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  const ListofDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   if (month < 1 || month > 12 || date < 1) {
-    alert(`Invalid input date [${dateString}/${monthString}/${yearString}]`);
+    alert(`Invalid input date [${dateString}/${monthString}/${yearString}]!`);
     return;
   }
   if (month == 1 || month > 2) {
     if (date > ListofDays[month - 1]) {
-      alert(`Invalid input date [${dateString}/${monthString}/${yearString}]`);
+      alert(`Invalid input date [${dateString}/${monthString}/${yearString}]!`);
       return;
     }
   }
   if (month == 2) {
-    var lyear = false;
+    var leapYear = false;
     if ((!(year % 4) && year % 100) || !(year % 400)) {
-      lyear = true;
+      leapYear = true;
     }
-    if (lyear == false && date >= 29) {
+    if (leapYear == false && date >= 29) {
       alert(`Invalid input date [${dateString}/${monthString}/${yearString}]`);
       return;
     }
-    if (lyear == true && date > 29) {
+    if (leapYear == true && date > 29) {
       alert(`Invalid input date [${dateString}/${monthString}/${yearString}]`);
       return;
     }
@@ -396,65 +463,5 @@ calculateBTN.onclick = function () {
 
 clearButton.onclick = function () {
   document.getElementById(`body`).className = "body1";
-
-  document.getElementById(`Number1`).innerHTML = `No data`;
-  document.getElementById(`Number2`).innerHTML = `No data`;
-  document.getElementById(`Number3`).innerHTML = `No data`;
-  document.getElementById(`Number4`).innerHTML = `No data`;
-  document.getElementById(`Number5`).innerHTML = `No data`;
-  document.getElementById(`Number6`).innerHTML = `No data`;
-  document.getElementById(`Number7`).innerHTML = `No data`;
-  document.getElementById(`Number8`).innerHTML = `No data`;
-  document.getElementById(`Number9`).innerHTML = `No data`;
-
-  line1.className = `matcher1`;
-  line2.className = `matcher1`;
-  line3.className = `matcher2`;
-  line4.className = `matcher3_left_top`;
-  line5.className = `matcher2`;
-  line6.className = `matcher3_right_top`;
-  line7.className = `matcher2`;
-  line8.className = `matcher1`;
-  line9.className = `matcher1`;
-  line10.className = `matcher2`;
-  line11.className = `matcher3_left_bottom`;
-  line12.className = `matcher2`;
-  line13.className = `matcher3_right_bottom`;
-  line14.className = `matcher2`;
-  line15.className = `matcher1`;
-  line16.className = `matcher1`;
-
-  clearImgsSpecs([
-    graphic1,
-    graphic2,
-    graphic3,
-    graphic4,
-    graphic5,
-    graphic6,
-    graphic7,
-    graphic8,
-    graphic9,
-  ]);
-
-  document.getElementById(`dataResultDate1`).innerHTML = `No data`;
-  document.getElementById(`dataResultMonth1`).innerHTML = `No data`;
-  document.getElementById(`dataResultYear1`).innerHTML = `No data`;
-  document.getElementById(`dataResultAll1`).innerHTML = `No data`;
-  document.getElementById(`dataResultDate1_Month1`).innerHTML = `No data`;
-  document.getElementById(`dataResultDate1_Year1`).innerHTML = `No data`;
-  document.getElementById(`dataResultMonth1_Year1`).innerHTML = `No data`;
-
-  document.getElementById(`Headnumber`).innerHTML = `No data`;
-
-  numberOf1s = 0;
-  numberOf2s = 0;
-  numberOf3s = 0;
-  numberOf4s = 0;
-  numberOf5s = 0;
-  numberOf6s = 0;
-  numberOf7s = 0;
-  numberOf8s = 0;
-  numberOf9s = 0;
-
-  loggedNumbers = [];
+  clearSectionData();
 };
