@@ -1,17 +1,12 @@
 "use strict";
 
-// log numbers
-const graphic1 = document.getElementById(`cell1`);
-const graphic2 = document.getElementById(`cell2`);
-const graphic3 = document.getElementById(`cell3`);
-const graphic4 = document.getElementById(`cell4`);
-const graphic5 = document.getElementById(`cell5`);
-const graphic6 = document.getElementById(`cell6`);
-const graphic7 = document.getElementById(`cell7`);
-const graphic8 = document.getElementById(`cell8`);
-const graphic9 = document.getElementById(`cell9`);
+// log images
+const graphics = [];
+for (let i = 1; i <= 9; i++) {
+  graphics[i] = document.getElementById(`cell${i}`);
+}
 
-// log sticks
+// log matches
 const line1 = document.getElementById(`stick1`);
 const line2 = document.getElementById(`stick2`);
 const line3 = document.getElementById(`stick3`);
@@ -28,6 +23,11 @@ const line13 = document.getElementById(`stick13`);
 const line14 = document.getElementById(`stick14`);
 const line15 = document.getElementById(`stick15`);
 const line16 = document.getElementById(`stick16`);
+
+const lines = [];
+for (let i = 1; i <= 16; i++) {
+  lines[i] = document.getElementById(`stick${i}`);
+}
 
 let numberOf1s = 0;
 let numberOf2s = 0;
@@ -54,11 +54,12 @@ function clearImgsSpecs(
 ) {
   imgs.forEach((element) => {
     element.src = ``;
-    element.title = `No data`;
-    element.alt = `No data`;
+    element.title = ``;
+    element.alt = ``;
   });
 }
 
+// ------------------------- Clear Section -------------------------
 function clearSectionData() {
   document.getElementById(`Number1`).innerHTML = `No data`;
   document.getElementById(`Number2`).innerHTML = `No data`;
@@ -87,17 +88,7 @@ function clearSectionData() {
   line15.className = `matcher1`;
   line16.className = `matcher1`;
 
-  clearImgsSpecs([
-    graphic1,
-    graphic2,
-    graphic3,
-    graphic4,
-    graphic5,
-    graphic6,
-    graphic7,
-    graphic8,
-    graphic9,
-  ]);
+  clearImgsSpecs(graphics);
 
   document.getElementById(`dataResultDate1`).innerHTML = `No data`;
   document.getElementById(`dataResultMonth1`).innerHTML = `No data`;
@@ -122,6 +113,7 @@ function clearSectionData() {
   loggedNumbers = [];
 }
 
+// ------------------------- Calculation -------------------------
 calculateBTN.onclick = function () {
   clearSectionData();
 
@@ -242,25 +234,8 @@ calculateBTN.onclick = function () {
   numberValueChecker(monthString);
   numberValueChecker(yearString);
 
-  graphic1.alt = ``;
-  graphic2.alt = ``;
-  graphic3.alt = ``;
-  graphic4.alt = ``;
-  graphic5.alt = ``;
-  graphic6.alt = ``;
-  graphic7.alt = ``;
-  graphic8.alt = ``;
-  graphic9.alt = ``;
-
-  graphic1.title = ``;
-  graphic2.title = ``;
-  graphic3.title = ``;
-  graphic4.title = ``;
-  graphic5.title = ``;
-  graphic6.title = ``;
-  graphic7.title = ``;
-  graphic8.title = ``;
-  graphic9.title = ``;
+  // reset images
+  clearImgsSpecs(graphics);
 
   function GraphicsLog(name, count) {
     if (count === 0) return;
@@ -301,22 +276,10 @@ calculateBTN.onclick = function () {
   GraphicsLog(`numberOf8s`, numberOf8s);
   GraphicsLog(`numberOf9s`, numberOf9s);
 
-  line1.className = `disabled`;
-  line2.className = `disabled`;
-  line3.className = `disabled`;
-  line4.className = `disabled`;
-  line5.className = `disabled`;
-  line6.className = `disabled`;
-  line7.className = `disabled`;
-  line8.className = `disabled`;
-  line9.className = `disabled`;
-  line10.className = `disabled`;
-  line11.className = `disabled`;
-  line12.className = `disabled`;
-  line13.className = `disabled`;
-  line14.className = `disabled`;
-  line15.className = `disabled`;
-  line16.className = `disabled`;
+  // Disable matches
+  lines.forEach((line) => {
+    line.className = `disabled`;
+  });
 
   if (loggedNumbers.includes(1) && loggedNumbers.includes(2)) {
     line3.className = `matcher2`;
