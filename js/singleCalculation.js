@@ -7,7 +7,7 @@ for (let i = 1; i <= 9; i++) {
 }
 
 // log matches
-const matches = [];
+const matches = [document.getElementById(`hiddenMatch`)];
 for (let i = 1; i <= 16; i++) {
   matches[i] = document.getElementById(`stick${i}`);
 }
@@ -286,6 +286,13 @@ calculateBTN.onclick = function () {
     [7, 8, 9],
     [matches[7], matches[14]],
     [`matcher2 special`, `matcher2 special`]
+  );
+
+  // Check For Full Card
+  CheckForCombinations(
+    [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    matches,
+    matchesClasses.map((s) => `${s} full`)
   );
 
   document.getElementById(`Headnumber`).innerHTML = rounded_Date_Month_Year;

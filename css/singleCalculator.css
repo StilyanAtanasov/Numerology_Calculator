@@ -32,6 +32,12 @@ img {
   height: auto;
 }
 
+.screenResult {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .body1 {
   background-color: black;
   color: beige;
@@ -97,6 +103,7 @@ header span {
   justify-self: center;
   align-self: center;
   font-weight: 700;
+  margin-left: 2%;
 }
 
 .headerBTNs {
@@ -113,7 +120,7 @@ header span {
   height: 5rem;
   width: 20rem;
   padding: 1rem 2rem;
-  margin: 5rem;
+  margin: 1rem;
   font-family: "Courier New", Courier, monospace;
   font-weight: 700;
   font-size: 1.5rem;
@@ -134,11 +141,16 @@ header span {
   background-color: yellow;
   border-radius: 15px;
   border: 1px dashed grey;
-  width: 25rem;
+  width: 28rem;
   height: 5rem;
   font-size: 2rem;
   padding: 0.8rem 1.2rem;
   cursor: pointer;
+  margin: 0 1rem;
+}
+
+.btns {
+  margin-left: 3%;
 }
 
 .result {
@@ -150,6 +162,7 @@ header span {
   justify-content: space-between;
   width: 90vw;
   height: 70rem;
+  align-self: center;
 }
 
 .info {
@@ -160,22 +173,24 @@ header span {
 
 .headNumber {
   font-weight: bolder;
-  font-size: 3.6rem;
+  font-size: 5rem;
+  margin-bottom: 2rem;
   text-align: center;
+  color: rgb(229, 255, 0);
 }
 
 .resultImage {
   display: grid;
   grid-template-columns: repeat(5, 15rem);
   scale: 0.8;
-  top: -6rem;
+  top: -9rem;
   position: relative;
 }
 
 .matcher1 {
   border: 0.5rem solid black;
   height: 0.1rem;
-  width: 15rem;
+  width: 100%;
 }
 
 .wrapper {
@@ -188,39 +203,43 @@ header span {
 .matcher2 {
   border: 0.5rem solid black;
   width: 0.1rem;
-  height: 15rem;
+  height: 100%;
 }
 
 .matcher3_right_top {
   border: 0.5rem solid black;
   width: 0.1rem;
-  height: 15rem;
+  height: 100%;
   transform: rotate(-135deg);
 }
 
 .matcher3_right_bottom {
   border: 0.5rem solid black;
   width: 0.1rem;
-  height: 15rem;
+  height: 100%;
   transform: rotate(-45deg);
 }
 
 .matcher3_left_top {
   border: 0.5rem solid black;
   width: 0.1rem;
-  height: 15rem;
+  height: 100%;
   transform: rotate(-45deg);
 }
 
 .matcher3_left_bottom {
   border: 0.5rem solid black;
   width: 0.1rem;
-  height: 15rem;
+  height: 100%;
   transform: rotate(45deg);
 }
 
 .special {
   border: 0.5rem solid yellow;
+}
+
+.full {
+  border: 0.5rem solid rgb(255, 102, 0);
 }
 
 /* Animations */
