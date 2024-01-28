@@ -93,9 +93,9 @@ function clearSectionData() {
 
   document.getElementById(`Headnumber`).innerHTML = `No data`;
 
-  numbersCount.forEach((number) => {
-    number = 0;
-  });
+  for (let index = 0; index < numbersCount.length; index++) {
+    numbersCount[index] = 0;
+  }
 
   loggedNumbers = [];
 }
