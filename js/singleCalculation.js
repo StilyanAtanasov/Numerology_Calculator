@@ -24,20 +24,31 @@ const line14 = document.getElementById(`stick14`);
 const line15 = document.getElementById(`stick15`);
 const line16 = document.getElementById(`stick16`);
 
-const lines = [];
-for (let i = 1; i <= 16; i++) {
-  lines[i] = document.getElementById(`stick${i}`);
+const matches = [];
+for (let i = 0; i < 16; i++) {
+  matches[i] = document.getElementById(`stick${i + 1}`);
 }
 
-let numberOf1s = 0;
-let numberOf2s = 0;
-let numberOf3s = 0;
-let numberOf4s = 0;
-let numberOf5s = 0;
-let numberOf6s = 0;
-let numberOf7s = 0;
-let numberOf8s = 0;
-let numberOf9s = 0;
+let matchesClasses = [
+  `matcher1`,
+  `matcher1`,
+  `matcher2`,
+  `matcher3_left_top`,
+  `matcher2`,
+  `matcher3_right_top`,
+  `matcher2`,
+  `matcher1`,
+  `matcher1`,
+  `matcher2`,
+  `matcher3_left_bottom`,
+  `matcher2`,
+  `matcher3_right_bottom`,
+  `matcher2`,
+  `matcher1`,
+  `matcher1`,
+];
+
+let numbersCount = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 let loggedNumbers = [];
 
@@ -61,32 +72,14 @@ function clearImgsSpecs(
 
 // ------------------------- Clear Section -------------------------
 function clearSectionData() {
-  document.getElementById(`Number1`).innerHTML = `No data`;
-  document.getElementById(`Number2`).innerHTML = `No data`;
-  document.getElementById(`Number3`).innerHTML = `No data`;
-  document.getElementById(`Number4`).innerHTML = `No data`;
-  document.getElementById(`Number5`).innerHTML = `No data`;
-  document.getElementById(`Number6`).innerHTML = `No data`;
-  document.getElementById(`Number7`).innerHTML = `No data`;
-  document.getElementById(`Number8`).innerHTML = `No data`;
-  document.getElementById(`Number9`).innerHTML = `No data`;
+  // Remove Numbers Count Stats
+  for (let index = 1; index <= 9; index++) {
+    document.getElementById(`Number${index}`).innerHTML = `No data`;
+  }
 
-  line1.className = `matcher1`;
-  line2.className = `matcher1`;
-  line3.className = `matcher2`;
-  line4.className = `matcher3_left_top`;
-  line5.className = `matcher2`;
-  line6.className = `matcher3_right_top`;
-  line7.className = `matcher2`;
-  line8.className = `matcher1`;
-  line9.className = `matcher1`;
-  line10.className = `matcher2`;
-  line11.className = `matcher3_left_bottom`;
-  line12.className = `matcher2`;
-  line13.className = `matcher3_right_bottom`;
-  line14.className = `matcher2`;
-  line15.className = `matcher1`;
-  line16.className = `matcher1`;
+  for (let index = 0; index < matches.length; index++) {
+    matches[index].className = matchesClasses[index];
+  }
 
   clearImgsSpecs(graphics);
 
@@ -100,15 +93,9 @@ function clearSectionData() {
 
   document.getElementById(`Headnumber`).innerHTML = `No data`;
 
-  numberOf1s = 0;
-  numberOf2s = 0;
-  numberOf3s = 0;
-  numberOf4s = 0;
-  numberOf5s = 0;
-  numberOf6s = 0;
-  numberOf7s = 0;
-  numberOf8s = 0;
-  numberOf9s = 0;
+  numbersCount.forEach((number) => {
+    number = 0;
+  });
 
   loggedNumbers = [];
 }
@@ -191,35 +178,7 @@ calculateBTN.onclick = function () {
 
   function numberValueChecker(input) {
     for (let i = 0; i < String(input).length; i++) {
-      switch (String(input)[i]) {
-        case `1`:
-          numberOf1s++;
-          break;
-        case `2`:
-          numberOf2s++;
-          break;
-        case `3`:
-          numberOf3s++;
-          break;
-        case `4`:
-          numberOf4s++;
-          break;
-        case `5`:
-          numberOf5s++;
-          break;
-        case `6`:
-          numberOf6s++;
-          break;
-        case `7`:
-          numberOf7s++;
-          break;
-        case `8`:
-          numberOf8s++;
-          break;
-        case `9`:
-          numberOf9s++;
-          break;
-      }
+      numbersCount[Number(String(input)[i]) - 1]++;
     }
   }
 
@@ -266,18 +225,13 @@ calculateBTN.onclick = function () {
     ).src = `../images/${loggedNumbers[loggedNumbers.length - 1]}_${count}.png`;
   }
 
-  GraphicsLog(`numberOf1s`, numberOf1s);
-  GraphicsLog(`numberOf2s`, numberOf2s);
-  GraphicsLog(`numberOf3s`, numberOf3s);
-  GraphicsLog(`numberOf4s`, numberOf4s);
-  GraphicsLog(`numberOf5s`, numberOf5s);
-  GraphicsLog(`numberOf6s`, numberOf6s);
-  GraphicsLog(`numberOf7s`, numberOf7s);
-  GraphicsLog(`numberOf8s`, numberOf8s);
-  GraphicsLog(`numberOf9s`, numberOf9s);
+  // Log numbers count
+  for (let index = 0; index < 9; index++) {
+    GraphicsLog(`numberOf${index + 1}s`, numbersCount[index]);
+  }
 
   // Disable matches
-  lines.forEach((line) => {
+  matches.forEach((line) => {
     line.className = `disabled`;
   });
 
@@ -413,15 +367,11 @@ calculateBTN.onclick = function () {
 
   document.getElementById(`Headnumber`).innerHTML = rounded_Date_Month_Year;
 
-  document.getElementById(`Number1`).innerHTML = `Number of 1s - ${numberOf1s}`;
-  document.getElementById(`Number2`).innerHTML = `Number of 2s - ${numberOf2s}`;
-  document.getElementById(`Number3`).innerHTML = `Number of 3s - ${numberOf3s}`;
-  document.getElementById(`Number4`).innerHTML = `Number of 4s - ${numberOf4s}`;
-  document.getElementById(`Number5`).innerHTML = `Number of 5s - ${numberOf5s}`;
-  document.getElementById(`Number6`).innerHTML = `Number of 6s - ${numberOf6s}`;
-  document.getElementById(`Number7`).innerHTML = `Number of 7s - ${numberOf7s}`;
-  document.getElementById(`Number8`).innerHTML = `Number of 8s - ${numberOf8s}`;
-  document.getElementById(`Number9`).innerHTML = `Number of 9s - ${numberOf9s}`;
+  for (let index = 0; index < 9; index++) {
+    document.getElementById(`Number${index + 1}`).innerHTML = `Number of ${
+      index + 1
+    }s - ${numbersCount[index]}`;
+  }
 };
 
 clearButton.onclick = function () {
