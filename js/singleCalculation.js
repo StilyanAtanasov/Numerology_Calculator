@@ -7,29 +7,13 @@ for (let i = 1; i <= 9; i++) {
 }
 
 // log matches
-const line1 = document.getElementById(`stick1`);
-const line2 = document.getElementById(`stick2`);
-const line3 = document.getElementById(`stick3`);
-const line4 = document.getElementById(`stick4`);
-const line5 = document.getElementById(`stick5`);
-const line6 = document.getElementById(`stick6`);
-const line7 = document.getElementById(`stick7`);
-const line8 = document.getElementById(`stick8`);
-const line9 = document.getElementById(`stick9`);
-const line10 = document.getElementById(`stick10`);
-const line11 = document.getElementById(`stick11`);
-const line12 = document.getElementById(`stick12`);
-const line13 = document.getElementById(`stick13`);
-const line14 = document.getElementById(`stick14`);
-const line15 = document.getElementById(`stick15`);
-const line16 = document.getElementById(`stick16`);
-
 const matches = [];
-for (let i = 0; i < 16; i++) {
-  matches[i] = document.getElementById(`stick${i + 1}`);
+for (let i = 1; i <= 16; i++) {
+  matches[i] = document.getElementById(`stick${i}`);
 }
 
 let matchesClasses = [
+  ``,
   `matcher1`,
   `matcher1`,
   `matcher2`,
@@ -77,7 +61,7 @@ function clearSectionData() {
     document.getElementById(`Number${index}`).innerHTML = `No data`;
   }
 
-  for (let index = 0; index < matches.length; index++) {
+  for (let index = 1; index < matches.length; index++) {
     matches[index].className = matchesClasses[index];
   }
 
@@ -235,135 +219,74 @@ calculateBTN.onclick = function () {
     line.className = `disabled`;
   });
 
-  if (loggedNumbers.includes(1) && loggedNumbers.includes(2)) {
-    line3.className = `matcher2`;
-  }
-  if (loggedNumbers.includes(1) && loggedNumbers.includes(4)) {
-    line1.className = `matcher1`;
-  }
-  if (loggedNumbers.includes(1) && loggedNumbers.includes(5)) {
-    line4.className = `matcher3_left_top`;
-  }
-  if (loggedNumbers.includes(2) && loggedNumbers.includes(5)) {
-    line8.className = `matcher1`;
-  }
-  if (loggedNumbers.includes(2) && loggedNumbers.includes(3)) {
-    line10.className = `matcher2`;
-  }
-  if (loggedNumbers.includes(3) && loggedNumbers.includes(5)) {
-    line11.className = `matcher3_left_bottom`;
-  }
-  if (loggedNumbers.includes(3) && loggedNumbers.includes(6)) {
-    line15.className = `matcher1`;
-  }
-  if (loggedNumbers.includes(4) && loggedNumbers.includes(7)) {
-    line2.className = `matcher1`;
-  }
-  if (loggedNumbers.includes(4) && loggedNumbers.includes(5)) {
-    line5.className = `matcher2`;
-  }
-  if (loggedNumbers.includes(5) && loggedNumbers.includes(6)) {
-    line12.className = `matcher2`;
-  }
-  if (loggedNumbers.includes(5) && loggedNumbers.includes(8)) {
-    line9.className = `matcher1`;
-  }
-  if (loggedNumbers.includes(6) && loggedNumbers.includes(9)) {
-    line16.className = `matcher1`;
-  }
-  if (loggedNumbers.includes(7) && loggedNumbers.includes(8)) {
-    line7.className = `matcher2`;
-  }
-  if (loggedNumbers.includes(7) && loggedNumbers.includes(5)) {
-    line6.className = `matcher3_right_top`;
-  }
-  if (loggedNumbers.includes(8) && loggedNumbers.includes(9)) {
-    line14.className = `matcher2`;
-  }
-  if (loggedNumbers.includes(9) && loggedNumbers.includes(5)) {
-    line13.className = `matcher3_right_bottom`;
+  // Combinations Checker
+  function CheckForCombinations(numsToContain, matchesToShow, classNames) {
+    if (numsToContain.every((number) => loggedNumbers.includes(number))) {
+      for (let index = 0; index < matchesToShow.length; index++) {
+        matchesToShow[index].className = classNames[index];
+      }
+    }
   }
 
-  if (
-    loggedNumbers.includes(1) &&
-    loggedNumbers.includes(2) &&
-    loggedNumbers.includes(3)
-  ) {
-    line3.className = `matcher2 special`;
-    line10.className = `matcher2 special`;
-    document.getElementsByClassName(`combinations`).innerHTML +=
-      `1 - 2 - 3` + `\n`;
-  }
-  if (
-    loggedNumbers.includes(1) &&
-    loggedNumbers.includes(4) &&
-    loggedNumbers.includes(7)
-  ) {
-    line1.className = `matcher1 special`;
-    line2.className = `matcher1 special`;
-    document.getElementsByClassName(`combinations`).innerHTML +=
-      `1 - 4 - 7` + `\n`;
-  }
-  if (
-    loggedNumbers.includes(1) &&
-    loggedNumbers.includes(5) &&
-    loggedNumbers.includes(9)
-  ) {
-    line4.className = `matcher3_left_top special`;
-    line13.className = `matcher3_right_bottom special`;
-    document.getElementsByClassName(`combinations`).innerHTML +=
-      `1 - 5 - 9` + `\n`;
-  }
-  if (
-    loggedNumbers.includes(2) &&
-    loggedNumbers.includes(5) &&
-    loggedNumbers.includes(8)
-  ) {
-    line8.className = `matcher1 special`;
-    line9.className = `matcher1 special`;
-    document.getElementsByClassName(`combinations`).innerHTML +=
-      `2 - 5 - 8` + `\n`;
-  }
-  if (
-    loggedNumbers.includes(3) &&
-    loggedNumbers.includes(5) &&
-    loggedNumbers.includes(7)
-  ) {
-    line11.className = `matcher3_left_bottom special`;
-    line6.className = `matcher3_right_top special`;
-    document.getElementsByClassName(`combinations`).innerHTML +=
-      `3 - 5 - 7` + `\n`;
-  }
-  if (
-    loggedNumbers.includes(3) &&
-    loggedNumbers.includes(6) &&
-    loggedNumbers.includes(9)
-  ) {
-    line15.className = `matcher1 special`;
-    line16.className = `matcher1 special`;
-    document.getElementsByClassName(`combinations`).innerHTML +=
-      `3 - 6 - 9` + `\n`;
-  }
-  if (
-    loggedNumbers.includes(4) &&
-    loggedNumbers.includes(5) &&
-    loggedNumbers.includes(6)
-  ) {
-    line5.className = `matcher2 special`;
-    line12.className = `matcher2 special`;
-    document.getElementsByClassName(`combinations`).innerHTML +=
-      `4 - 5 - 6` + `\n`;
-  }
-  if (
-    loggedNumbers.includes(7) &&
-    loggedNumbers.includes(8) &&
-    loggedNumbers.includes(9)
-  ) {
-    line7.className = `matcher2 special`;
-    line14.className = `matcher2 special`;
-    document.getElementsByClassName(`combinations`).innerHTML +=
-      `7 - 8 - 9` + `\n`;
-  }
+  // Connections
+  CheckForCombinations([1, 4], [matches[1]], [`matcher1`]);
+  CheckForCombinations([4, 7], [matches[2]], [`matcher1`]);
+  CheckForCombinations([1, 2], [matches[3]], [`matcher2`]);
+  CheckForCombinations([1, 5], [matches[4]], [`matcher3_left_top`]);
+  CheckForCombinations([4, 5], [matches[5]], [`matcher2`]);
+  CheckForCombinations([7, 5], [matches[6]], [`matcher3_right_top`]);
+  CheckForCombinations([7, 8], [matches[7]], [`matcher2`]);
+  CheckForCombinations([2, 5], [matches[8]], [`matcher1`]);
+  CheckForCombinations([5, 8], [matches[9]], [`matcher1`]);
+  CheckForCombinations([2, 3], [matches[10]], [`matcher2`]);
+  CheckForCombinations([3, 5], [matches[11]], [`matcher3_left_bottom`]);
+  CheckForCombinations([5, 6], [matches[12]], [`matcher2`]);
+  CheckForCombinations([9, 5], [matches[13]], [`matcher3_right_bottom`]);
+  CheckForCombinations([8, 9], [matches[14]], [`matcher2`]);
+  CheckForCombinations([3, 6], [matches[15]], [`matcher1`]);
+  CheckForCombinations([6, 9], [matches[16]], [`matcher1`]);
+
+  // Combinations
+  CheckForCombinations(
+    [1, 2, 3],
+    [matches[3], matches[10]],
+    [`matcher2 special`, `matcher2 special`]
+  );
+  CheckForCombinations(
+    [1, 4, 7],
+    [matches[1], matches[2]],
+    [`matcher1 special`, `matcher1 special`]
+  );
+  CheckForCombinations(
+    [1, 5, 9],
+    [matches[4], matches[13]],
+    [`matcher3_left_top special`, `matcher3_right_bottom special`]
+  );
+  CheckForCombinations(
+    [2, 5, 8],
+    [matches[8], matches[9]],
+    [`matcher1 special`, `matcher1 special`]
+  );
+  CheckForCombinations(
+    [3, 5, 7],
+    [matches[11], matches[6]],
+    [`matcher3_left_bottom special`, `matcher3_right_top special`]
+  );
+  CheckForCombinations(
+    [3, 6, 9],
+    [matches[15], matches[16]],
+    [`matcher1 special`, `matcher1 special`]
+  );
+  CheckForCombinations(
+    [4, 5, 6],
+    [matches[5], matches[12]],
+    [`matcher2 special`, `matcher2 special`]
+  );
+  CheckForCombinations(
+    [7, 8, 9],
+    [matches[7], matches[14]],
+    [`matcher2 special`, `matcher2 special`]
+  );
 
   document.getElementById(`Headnumber`).innerHTML = rounded_Date_Month_Year;
 
