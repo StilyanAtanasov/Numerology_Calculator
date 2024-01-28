@@ -93,7 +93,7 @@ function clearSectionData() {
 
   document.getElementById(`Headnumber`).innerHTML = `No data`;
 
-  numbersCount.forEach((number) => {
+  numbersCount.forEach(number => {
     number = 0;
   });
 
